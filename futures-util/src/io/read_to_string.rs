@@ -17,8 +17,6 @@ pub struct ReadToString<'a, R: ?Sized> {
     start_len: usize,
 }
 
-impl<R: ?Sized + Unpin> Unpin for ReadToString<'_, R> {}
-
 impl<'a, R: AsyncRead + ?Sized + Unpin> ReadToString<'a, R> {
     pub(super) fn new(reader: &'a mut R, buf: &'a mut String) -> Self {
         let start_len = buf.len();

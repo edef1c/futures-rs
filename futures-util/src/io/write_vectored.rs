@@ -12,8 +12,6 @@ pub struct WriteVectored<'a, 'b, W: ?Sized> {
     bufs: &'a [IoSlice<'b>],
 }
 
-impl<W: ?Sized + Unpin> Unpin for WriteVectored<'_, '_, W> {}
-
 impl<'a, 'b, W: AsyncWrite + ?Sized + Unpin> WriteVectored<'a, 'b, W> {
     pub(super) fn new(writer: &'a mut W, bufs: &'a [IoSlice<'b>]) -> Self {
         Self { writer, bufs }

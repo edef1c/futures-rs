@@ -14,8 +14,6 @@ pub struct ReadExact<'a, R: ?Sized> {
     buf: &'a mut [u8],
 }
 
-impl<R: ?Sized + Unpin> Unpin for ReadExact<'_, R> {}
-
 impl<'a, R: AsyncRead + ?Sized + Unpin> ReadExact<'a, R> {
     pub(super) fn new(reader: &'a mut R, buf: &'a mut [u8]) -> Self {
         Self { reader, buf }

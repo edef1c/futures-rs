@@ -12,8 +12,6 @@ pub struct ReadVectored<'a, 'b, R: ?Sized> {
     bufs: &'a mut [IoSliceMut<'b>],
 }
 
-impl<R: ?Sized + Unpin> Unpin for ReadVectored<'_, '_, R> {}
-
 impl<'a, 'b, R: AsyncRead + ?Sized + Unpin> ReadVectored<'a, 'b, R> {
     pub(super) fn new(reader: &'a mut R, bufs: &'a mut [IoSliceMut<'b>]) -> Self {
         Self { reader, bufs }

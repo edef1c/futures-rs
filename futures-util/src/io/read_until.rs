@@ -16,8 +16,6 @@ pub struct ReadUntil<'a, R: ?Sized> {
     read: usize,
 }
 
-impl<R: ?Sized + Unpin> Unpin for ReadUntil<'_, R> {}
-
 impl<'a, R: AsyncBufRead + ?Sized + Unpin> ReadUntil<'a, R> {
     pub(super) fn new(reader: &'a mut R, byte: u8, buf: &'a mut Vec<u8>) -> Self {
         Self { reader, byte, buf, read: 0 }

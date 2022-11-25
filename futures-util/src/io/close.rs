@@ -11,8 +11,6 @@ pub struct Close<'a, W: ?Sized> {
     writer: &'a mut W,
 }
 
-impl<W: ?Sized + Unpin> Unpin for Close<'_, W> {}
-
 impl<'a, W: AsyncWrite + ?Sized + Unpin> Close<'a, W> {
     pub(super) fn new(writer: &'a mut W) -> Self {
         Self { writer }

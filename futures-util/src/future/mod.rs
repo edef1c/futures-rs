@@ -127,3 +127,10 @@ where
 {
     future
 }
+
+pub(crate) fn assert_unpin_future<T, F>(future: F) -> F
+where
+    F: Future<Output = T> + Unpin,
+{
+    future
+}

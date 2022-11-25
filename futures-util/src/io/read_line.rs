@@ -18,8 +18,6 @@ pub struct ReadLine<'a, R: ?Sized> {
     read: usize,
 }
 
-impl<R: ?Sized + Unpin> Unpin for ReadLine<'_, R> {}
-
 impl<'a, R: AsyncBufRead + ?Sized + Unpin> ReadLine<'a, R> {
     pub(super) fn new(reader: &'a mut R, buf: &'a mut String) -> Self {
         Self { reader, bytes: mem::take(buf).into_bytes(), buf, read: 0 }

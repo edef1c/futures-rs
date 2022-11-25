@@ -15,8 +15,6 @@ pub struct ReadToEnd<'a, R: ?Sized> {
     start_len: usize,
 }
 
-impl<R: ?Sized + Unpin> Unpin for ReadToEnd<'_, R> {}
-
 impl<'a, R: AsyncRead + ?Sized + Unpin> ReadToEnd<'a, R> {
     pub(super) fn new(reader: &'a mut R, buf: &'a mut Vec<u8>) -> Self {
         let start_len = buf.len();

@@ -12,8 +12,6 @@ pub struct Seek<'a, S: ?Sized> {
     pos: SeekFrom,
 }
 
-impl<S: ?Sized + Unpin> Unpin for Seek<'_, S> {}
-
 impl<'a, S: AsyncSeek + ?Sized + Unpin> Seek<'a, S> {
     pub(super) fn new(seek: &'a mut S, pos: SeekFrom) -> Self {
         Self { seek, pos }
